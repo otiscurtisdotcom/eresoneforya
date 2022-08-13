@@ -1,0 +1,32 @@
+header {
+  position: fixed;
+  left: 0;
+  top:0;
+  height: 100px;
+  width: 100%;
+  z-index: 1;
+  background-color: #ff0;
+
+  a {
+    color: #fff;
+    float: right;
+    // cursor: url(https://abs.twimg.com/emoji/v2/72x72/1f923.png) 36 36, auto;
+    -webkit-appearance: none;
+    border: none;
+    background-color: transparent;
+    padding: 30px 40px;
+    font-size: 40px;
+    line-height: 1em;
+    outline: none !important;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  a.on {
+    color: #000;
+    -webkit-text-stroke-color: #fff;
+  }
+}
