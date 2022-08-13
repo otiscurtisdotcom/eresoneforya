@@ -48,7 +48,7 @@ export class ContentService {
   ) {}
   
   // IMH
-  readonly getCitiesList$ = this.http.get<City[]>('/assets/json/cities.json').pipe(shareReplay(1));
+  readonly getCitiesList$ = this.http.get<City[]>('assets/json/cities.json').pipe(shareReplay(1));
 
   readonly getCityText$ = this.getCitiesList$.pipe(
     switchMap((allCities) => {
@@ -58,7 +58,7 @@ export class ContentService {
   )
 
   // WTD
-  readonly getWordsList$ = this.http.get<Words>('/assets/json/words.json').pipe(shareReplay(1));
+  readonly getWordsList$ = this.http.get<Words>('assets/json/words.json').pipe(shareReplay(1));
 
   readonly getWordsText$ = this.getWordsList$.pipe(
     switchMap((allWords) => {
@@ -69,8 +69,8 @@ export class ContentService {
 
   // CC
   readonly getCelebAndThing$ = combineLatest([
-    this.http.get<Person[]>('/assets/json/people.json'),
-    this.http.get<Thing[]>('/assets/json/things.json'),
+    this.http.get<Person[]>('assets/json/people.json'),
+    this.http.get<Thing[]>('assets/json/things.json'),
   ])
     .pipe(
       shareReplay(1),
