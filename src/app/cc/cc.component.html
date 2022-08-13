@@ -1,0 +1,20 @@
+<section *ngIf="content$ | async as content" data-slide="One">
+  <div class="line1">
+    <h1>{{ content.line1 }}</h1>
+    <img
+      *ngIf="content.img1"
+      [src]="content.img1"
+      alt="person"
+      [style.transform]="'translate(' + content.pos1.x + 'px, ' + content.pos1.y + '%)'"
+    />
+  </div>
+  <div class="line2">
+    <h1>{{ content.line2 }}</h1>
+    <img
+      *ngIf="content.img2"
+      [src]="content.img2"
+      alt="thing"
+      [style.transform]="'translate(' + content.pos2.x + 'px, ' + content.pos2.y + '%)'"
+    />
+  </div>
+</section>

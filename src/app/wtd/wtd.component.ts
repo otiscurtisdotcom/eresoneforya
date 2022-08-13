@@ -8,7 +8,7 @@ interface WTD {
 }
 
 @Component({
-  selector: 'app-imh',
+  selector: 'wtd',
   templateUrl: './wtd.component.html'
 })
 export class WtdComponent {
@@ -24,7 +24,7 @@ export class WtdComponent {
         const startsWithVowel = vowels.includes(firstNoun.word.charAt(0));
         const word = `${startsWithVowel ? 'an' : 'a'} ${firstNoun.word}`;
 
-        const firstNounDesc = firstNoun.defs.find(def => def.includes('n\t')) || firstNoun.defs[0];
+        const firstNounDesc = firstNoun.defs?.find(def => def.includes('n\t')) || firstNoun.defs[0];
 
         const joke: WTD = {
           line1: `What's the difference between ${word} and Donald Trump?`,

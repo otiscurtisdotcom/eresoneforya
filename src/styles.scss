@@ -38,6 +38,9 @@ section div {
   width: 100%;
   float: left;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 section[data-slide="Three"] div { height: 33.333%; }
@@ -64,12 +67,8 @@ h1 {
 }
 
 img {
-  position: absolute;
   height: 40%;
   width: auto;
-  top: 50%;
-  left: 30%;
-  transform: translate(-50%, -50%);
   z-index: 0;
 }
 

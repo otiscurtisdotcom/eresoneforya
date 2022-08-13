@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { switchMap } from 'rxjs';
+import { combineLatest, map, shareReplay, switchMap } from 'rxjs';
 
 interface City {
   city: string,
@@ -28,6 +28,17 @@ interface WordContent {
   word: string;
 }
 
+interface Person {
+  humanLabel: string;
+  image: string;
+  sex_or_genderLabel: string;
+}
+
+interface Thing {
+  image: string;
+  itemLabel: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -37,7 +48,7 @@ export class ContentService {
   ) {}
   
   // IMH
-  readonly getCitiesList$ = this.http.get<City[]>('/assets/json/cities.json');
+  readonly getCitiesList$ = this.http.get<City[]>('/assets/json/cities.json').pipe(shareReplay(1));
 
   readonly getCityText$ = this.getCitiesList$.pipe(
     switchMap((allCities) => {
@@ -47,12 +58,24 @@ export class ContentService {
   )
 
   // WTD
-  readonly getWordsList$ = this.http.get<Words>('/assets/json/words.json');
+  readonly getWordsList$ = this.http.get<Words>('/assets/json/words.json').pipe(shareReplay(1));
 
   readonly getWordsText$ = this.getWordsList$.pipe(
     switchMap((allWords) => {
       const rndWord = allWords.data[Math.floor(Math.random() * allWords.data.length)];
       return this.http.get<WordContent[]>(`https://api.datamuse.com/words?ml=${rndWord.word}&md=d&max=5`)
     })
+  )
+
+  // CC
+  readonly getCelebAndThing$ = combineLatest([
+    this.http.get<Person[]>('/assets/json/people.json'),
+    this.http.get<Thing[]>('/assets/json/things.json'),
+  ])
+    .pipe(
+      shareReplay(1),
+      map(([people, things]) => {
+        return {people, things}
+      })
   )
 }

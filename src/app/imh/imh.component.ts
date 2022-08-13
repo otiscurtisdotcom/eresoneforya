@@ -9,7 +9,7 @@ interface IMH {
 }
 
 @Component({
-  selector: 'app-imh',
+  selector: 'imh',
   templateUrl: './imh.component.html'
 })
 export class ImhComponent {
@@ -19,7 +19,6 @@ export class ImhComponent {
 
   readonly content$ = this.contentService.getCityText$.pipe(
     map((cities) => {
-      console.log(cities);
       const city = cities.data.places.find(city => !!city.perex) || cities.data.places[0];
       const desc = city.perex ? city.perex.replace(`${city.name} is`,'').replace(`${city.name}, `,'').replace(`Located in`,'a place located in') : city.name;
 
