@@ -6,11 +6,13 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ImhComponent } from './imh/imh.component';
+import { WtdComponent } from './wtd/wtd.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ImhComponent
+    ImhComponent,
+    WtdComponent,
   ],
   imports: [
     BrowserModule,

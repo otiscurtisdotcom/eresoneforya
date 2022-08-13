@@ -19,6 +19,8 @@ header {
     line-height: 1em;
     outline: none !important;
     text-decoration: none;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000;
   }
   
   a:hover {

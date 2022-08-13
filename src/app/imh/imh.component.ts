@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { map } from 'rxjs';
 import { ContentService } from '../content.service';
 
@@ -10,10 +10,9 @@ interface IMH {
 
 @Component({
   selector: 'app-imh',
-  templateUrl: './imh.component.html',
-  styleUrls: ['./imh.component.scss']
+  templateUrl: './imh.component.html'
 })
-export class ImhComponent implements OnInit {
+export class ImhComponent {
   constructor(
     private readonly contentService: ContentService,
   ) {}
@@ -32,8 +31,4 @@ export class ImhComponent implements OnInit {
       return joke;
     })
   );
-
-  ngOnInit() {
-    console.log('loaded');
-  }
 }

@@ -1,0 +1,8 @@
+<section *ngIf="content$ | async as content" data-slide="Two">
+  <div class="line1">
+    <h1>{{ content.line1 }}</h1>
+  </div>
+  <div class="line2">
+    <h1 [innerHtml]="content.line2"></h1>
+  </div>
+</section>
