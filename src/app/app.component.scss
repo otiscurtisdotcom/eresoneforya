@@ -1,26 +1,29 @@
 header {
-  position: fixed;
-  left: 0;
-  top:0;
+  background-color: #ff0;
+  display: flex;
+  justify-content: flex-end;
   height: 100px;
   width: 100%;
-  z-index: 1;
-  background-color: #ff0;
+
+  @media (max-height: 750px), (max-width: 1000px) {
+    height: 60px;
+  }
 
   a {
     color: #fff;
     float: right;
-    cursor: url(https://abs.twimg.com/emoji/v2/72x72/1f923.png) 36 36, auto;
-    -webkit-appearance: none;
-    border: none;
-    background-color: transparent;
+    cursor: url('../assets/rofl2.png') 0 0, auto;
     padding: 30px 40px;
     font-size: 40px;
     line-height: 1em;
-    outline: none !important;
     text-decoration: none;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #000;
+
+    @media (max-height: 750px), (max-width: 1000px) {
+      font-size: 20px;
+      padding: 20px 30px;
+    }
   }
   
   a:hover {

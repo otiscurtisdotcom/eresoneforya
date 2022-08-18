@@ -1,6 +1,10 @@
+<button (click)="redo()">
+  &#8617;
+</button>
+
 <section *ngIf="content$ | async as content" data-slide="One">
   <div class="line1">
-    <h1>{{ content.line1 }}</h1>
+    <h1 [attr.data-text]="content.line1">{{ content.line1 }}</h1>
     <img
       *ngIf="content.img1"
       [src]="content.img1"
@@ -9,7 +13,7 @@
     />
   </div>
   <div class="line2">
-    <h1>{{ content.line2 }}</h1>
+    <h1 [attr.data-text]="content.line2">{{ content.line2 }}</h1>
     <img
       *ngIf="content.img2"
       [src]="content.img2"

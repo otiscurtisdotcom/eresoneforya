@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ContentService } from '../content.service';
 
 interface CC {
@@ -23,30 +23,40 @@ interface Coords {
 export class CcComponent {
   constructor(
     private readonly contentService: ContentService,
-  ) {}
+  ) {
+    this.content$ = this.getContent();
+  }
 
-  readonly content$ = this.contentService.getCelebAndThing$.pipe(
-    map((allStuff) => {
-      const rndPerson = allStuff.people[Math.floor(Math.random() * allStuff.people.length)];
-      const rndThing = allStuff.things[Math.floor(Math.random() * allStuff.things.length)];
-      const isFemale = rndPerson.sex_or_genderLabel === 'female';
+  content$?: Observable<CC>;
 
-      const w = window.innerWidth;
+  redo() {
+    this.content$ = this.getContent();
+  }
 
-      const rndX1 = (Math.random() * w * 0.8) - (w * 0.4);
-      const rndX2 = (Math.random() * w * 0.8) - (w * 0.4);
-      const rndY1 = Math.random() * 40;
-      const rndY2 = Math.random() * -40;
+  getContent() {
+    return this.contentService.getCelebAndThing().pipe(
+      map((allStuff) => {
+        const rndPerson = allStuff.people[Math.floor(Math.random() * allStuff.people.length)];
+        const rndThing = allStuff.things[Math.floor(Math.random() * allStuff.things.length)];
+        const isFemale = rndPerson.sex_or_genderLabel === 'female';
 
-      const joke: CC = {
-        line1: `${rndPerson.humanLabel} called.`,
-        line2: `${isFemale ? 'She' : 'He'} wants ${isFemale ? 'her' : 'his'} ${rndThing.itemLabel} back.`,
-        img1: rndPerson.image,
-        img2: rndThing.image,
-        pos1: {x: rndX1, y: rndY1},
-        pos2: {x: rndX2, y: rndY2},
-      }
-      return joke;
-    })
-  );
+        const w = window.innerWidth;
+
+        const rndX1 = (Math.random() * w * 0.8) - (w * 0.4);
+        const rndX2 = (Math.random() * w * 0.8) - (w * 0.4);
+        const rndY1 = Math.random() * 40;
+        const rndY2 = Math.random() * -40;
+
+        const joke: CC = {
+          line1: `${rndPerson.humanLabel} called.`,
+          line2: `${isFemale ? 'She' : 'He'} wants ${isFemale ? 'her' : 'his'} ${rndThing.itemLabel} back.`,
+          img1: rndPerson.image,
+          img2: rndThing.image,
+          pos1: {x: rndX1, y: rndY1},
+          pos2: {x: rndX2, y: rndY2},
+        }
+        return joke;
+      })
+    );
+  }
 }
